@@ -51,7 +51,7 @@ userSchema.statics.login = async function(email, password) {
 
     // try and find user
     const user = await this.findOne({ email })
-    if (!userSchema) {
+    if (!user) {
         throw Error('No account with that email');
     }
 
