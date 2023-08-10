@@ -1,6 +1,9 @@
 // Chakra
 import { Box, Button } from "@chakra-ui/react";
 
+// Components
+import LoginDrawer from "../../components/disclosure-comps/login-drawer/LoginDrawer";
+
 // Pages
 import LandingPage from "../../pages/landing-page/LandingPage";
 import UserDashboard from "../../pages/user-dashboard/UserDashboard";
@@ -20,12 +23,23 @@ const RootLayout = () => {
             w="100%"
             bgColor={bgColor}
         >
-            <Button pos="absolute" zIndex="1" onClick={() => {setUserLoggedIn(!userLoggedIn)}}>Login</Button>
+            <LoginDrawer />
+            {/* <Button onClick={() => {setUserLoggedIn(!userLoggedIn)}}
+                pos="absolute"
+                m="1rem"
+                right="0px"
+                bgColor="#F1B049"
+                _hover={{bgColor: "#F9D7A2"}}
+                zIndex="1"
+            >
+                Login
+            </Button> */}
+
             {userLoggedIn ? 
             
                 <UserDashboard /> : 
                 
-                <LandingPage login={() => {setUserLoggedIn(!setUserLoggedIn)}} />
+                <LandingPage />
             }
         </Box>
      );

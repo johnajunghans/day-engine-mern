@@ -33,7 +33,9 @@ const UserDashboard = () => {
     }
 
     return ( 
-        <Flex>
+        <Flex
+            
+        >
             {routines.map( routine => (
                 <RoutineCard key={routine} name={routine} />
             ))}

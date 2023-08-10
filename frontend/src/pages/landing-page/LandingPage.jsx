@@ -3,7 +3,7 @@ import Logo from '../../assets/logo.png';
 import Wheel from '../../assets/wheel.png';
 import RectangleButton from "../../components/utility-comps/button-comps/RectangleButton";
 
-const LandingPage = ({ login }) => {
+const LandingPage = () => {
 
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
@@ -31,16 +31,6 @@ const LandingPage = ({ login }) => {
             minH="100vh"
             overflow="hidden"
         >
-            <Button onClick={login}
-                pos="absolute"
-                m="1rem"
-                right="0px"
-                bgColor="#F1B049"
-                _hover={{bgColor: "#F9D7A2"}}
-
-            >
-                Login
-            </Button>
             <Image src={Logo}
                 width="300px"
                 pos="absolute"
