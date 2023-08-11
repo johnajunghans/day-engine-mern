@@ -45,8 +45,6 @@ const LandingPage = () => {
                 w="1000px"
                 top="-400px"
                 left="calc(-600px + 10%)"
-                // width={`${windowWidth*0.5}px`}
-                // top={`${-windowWidth*0.25}px`}
                 animation="logo-spin infinite 180s linear"
             />
             <Image src={Wheel}
@@ -54,8 +52,6 @@ const LandingPage = () => {
                 w="1000px"
                 bottom="-400px"
                 right="calc(-600px + 10%)"
-                // width={`${windowWidth*0.5}px`}
-                // bottom={`${-windowWidth*0.25}px`}
                 animation="logo-spin infinite 180s linear"
             />
         </Box>

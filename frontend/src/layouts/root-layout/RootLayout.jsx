@@ -22,6 +22,9 @@ const RootLayout = () => {
             minH="100vh"
             w="100%"
             bgColor={bgColor}
+            // animation="bg-color-change infinite 5s linear alternate"
+            // background="linear-gradient(to right top, #865032, #7e4429, #773921, #6f2d19, #672012);"
+            
         >
             <LoginDrawer />
             {/* <Button onClick={() => {setUserLoggedIn(!userLoggedIn)}}
