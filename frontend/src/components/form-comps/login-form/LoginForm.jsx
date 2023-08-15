@@ -6,22 +6,6 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const StdInput = ({ placeholder, onChange }) => {
-        
-        return (
-            <Input 
-                placeholder={placeholder} 
-                bgColor="#F8F8FF"
-                size="lg"
-                isRequired="true"
-                onChange={onChange}
-                // outline="none"
-                // outlineOffset="0px"
-                // _focus={{outlineColor: "#F1B049"}}
-            />
-        )
-    }
-
     return ( 
         <form onSubmit={{}}>
             <Stack
@@ -30,17 +14,30 @@ const LoginForm = () => {
                 borderRadius="10px"
                 padding="1rem"
             >
-                <StdInput 
+                <Input
+                    bgColor="#F8F8FF"
+                    size="lg"
+                    isRequired="true"
+                    focusBorderColor="#F1B049"
                     placeholder="Email"
+                    type="email"
                     onChange={e => {setEmail(e.target.value)}} 
+                    value={email}
                 />
-                <StdInput 
-                    placeholder="Password" 
+                <Input
+                    bgColor="#F8F8FF"
+                    size="lg"
+                    isRequired="true"
+                    focusBorderColor="#F1B049"
+                    placeholder="Password"
+                    type="password"
                     onChange={e => {setPassword(e.target.value)}}
+                    value={password}
                 />
             <Button 
                 type="submit"
                 bgColor="#F1B049"
+                _hover={{bgColor: "#F9D7A2"}}
             >Submit</Button>
             </Stack>
         </form>

@@ -11,6 +11,8 @@ import UserDashboard from "../../pages/user-dashboard/UserDashboard";
 // React
 import { useState } from "react";
 
+import Stars from '../../assets/starscape.jpeg'
+
 const RootLayout = () => {
 
     const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -21,7 +23,8 @@ const RootLayout = () => {
         <Box as="main"
             minH="100vh"
             w="100%"
-            bgColor={bgColor}
+            // bgColor={bgColor}
+            bgImage={Stars}
             // animation="bg-color-change infinite 5s linear alternate"
             // background="linear-gradient(to right top, #865032, #7e4429, #773921, #6f2d19, #672012);"
             

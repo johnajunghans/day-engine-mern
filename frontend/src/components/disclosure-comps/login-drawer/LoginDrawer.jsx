@@ -53,6 +53,20 @@ const LoginDrawer = () => {
                                 <Text color="#FFFFFF">OR</Text>
                                 <hr style={hrStyle} />
                             </Flex>
+                            <Flex
+                                flexDir="column"
+                                gap="1rem"
+                                bgColor="rgba(255,255,255,0.5)" 
+                                borderRadius="10px"
+                                padding="1rem"
+                            >
+                                <Button
+                                    colorScheme="blue"  
+                                >Request an Account</Button>
+                                <Button
+                                    colorScheme="green"
+                                >View Live Demo!</Button>
+                            </Flex>
                         </Flex>
                     </DrawerBody>
                     <DrawerFooter>
