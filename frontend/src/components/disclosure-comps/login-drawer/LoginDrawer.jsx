@@ -1,14 +1,33 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, useDisclosure, Text } from "@chakra-ui/react";
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, useDisclosure, Text, useToast } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useLogin } from "../../../hooks/useLogin";
 import LoginForm from "../../form-comps/login-form/LoginForm";
 
 const LoginDrawer = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { login, isLoading, error } = useLogin();
+
+    const errorToast = useToast();
 
     const hrStyle = {
         width: "100%",
         color: "#FFFFFF"
     }
+
+    const handleLogin = async (email, password) => {
+        await login(email, password);
+    }
+
+    useEffect(() => {
+        error && errorToast({
+            title: "Error",
+            description: error,
+            status: "error",
+            duration: 5000,
+            isClosable: false
+        })
+    }, [error])
 
     return (
         <>
@@ -43,7 +62,7 @@ const LoginDrawer = () => {
                             flexDir="column"
                             gap="1.5rem"
                         >
-                            <LoginForm />
+                            <LoginForm handleLogin={handleLogin} />
                             <Flex
                                 align="center"
                                 gap="0.5rem"

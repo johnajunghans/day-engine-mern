@@ -8,14 +8,12 @@ import LoginDrawer from "../../components/disclosure-comps/login-drawer/LoginDra
 import LandingPage from "../../pages/landing-page/LandingPage";
 import UserDashboard from "../../pages/user-dashboard/UserDashboard";
 
-// React
-import { useState } from "react";
-
-import Stars from '../../assets/starscape.jpeg'
+// Context
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const RootLayout = () => {
 
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const { user } = useAuthContext()
 
     const bgColor = "#865032"
     
@@ -23,25 +21,15 @@ const RootLayout = () => {
         <Box as="main"
             minH="100vh"
             w="100%"
-            // bgColor={bgColor}
-            bgImage={Stars}
+            bgColor={bgColor}
+            // bgImage={Stars}
             // animation="bg-color-change infinite 5s linear alternate"
             // background="linear-gradient(to right top, #865032, #7e4429, #773921, #6f2d19, #672012);"
             
         >
             <LoginDrawer />
-            {/* <Button onClick={() => {setUserLoggedIn(!userLoggedIn)}}
-                pos="absolute"
-                m="1rem"
-                right="0px"
-                bgColor="#F1B049"
-                _hover={{bgColor: "#F9D7A2"}}
-                zIndex="1"
-            >
-                Login
-            </Button> */}
 
-            {userLoggedIn ? 
+            {user ? 
             
                 <UserDashboard /> : 
                 

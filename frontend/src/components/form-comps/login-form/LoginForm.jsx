@@ -1,13 +1,18 @@
 import { Button, Input, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 
-const LoginForm = () => {
+const LoginForm = ({ handleLogin }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        handleLogin(email, password);
+    }
+
     return ( 
-        <form onSubmit={{}}>
+        <form onSubmit={handleSubmit}>
             <Stack
                 spacing="1rem" 
                 bgColor="rgba(255,255,255,0.5)" 
@@ -17,7 +22,7 @@ const LoginForm = () => {
                 <Input
                     bgColor="#F8F8FF"
                     size="lg"
-                    isRequired="true"
+                    isRequired={true}
                     focusBorderColor="#F1B049"
                     placeholder="Email"
                     type="email"
@@ -27,7 +32,7 @@ const LoginForm = () => {
                 <Input
                     bgColor="#F8F8FF"
                     size="lg"
-                    isRequired="true"
+                    isRequired={true}
                     focusBorderColor="#F1B049"
                     placeholder="Password"
                     type="password"
