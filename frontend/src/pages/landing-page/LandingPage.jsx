@@ -1,24 +1,14 @@
 import { Box, Button, Image } from "@chakra-ui/react";
 import Logo from '../../assets/logo.png';
 import Wheel from '../../assets/wheel.png';
-import RectangleButton from "../../components/utility-comps/button-comps/RectangleButton";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const LandingPage = () => {
 
+    const { user } = useAuthContext();
+
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-
-    const Wheels = (left) => {
-        return (
-            <Image src={Wheel}
-                pos="absolute"
-                width={`${windowWidth*0.5}px`}
-                top={left && `${-windowWidth*0.25}px`}
-                bottom={!left && `${-windowWidth*0.25}px`}
-                
-            />
-        )
-    }
 
     return ( 
 
@@ -26,33 +16,34 @@ const LandingPage = () => {
             pos="relative"
             w="100%"
             h="100%"
-            // w={`${windowWidth}px`}
-            // h={`${windowHeight}px`}
             minH="100vh"
             overflow="hidden"
         >
             <Image src={Logo}
-                width="300px"
+                width={user ? "100px" : "300px"}
                 pos="absolute"
-                top="calc(50% - 150px)"
-                left="calc(50% - 150px)"
-                // top={`${windowHeight*0.5-150}px`}
-                // left={`${windowWidth*0.5-150}px`}
+                top={user ? "5px" : "calc(50% - 150px)"}
+                left={user ? "5px" : "calc(50% - 150px)"}
                 animation="logo-spin infinite 90s linear"
+                transition="0.5s"
+                transitionDelay="1s"
             />
             <Image src={Wheel}
                 pos="absolute"
                 w="1000px"
                 top="-400px"
-                left="calc(-600px + 10%)"
+                left={user ? "-1000px" : "calc(-600px + 10%)"}
+                borderRadius="50%"
                 animation="logo-spin infinite 180s linear"
+                transition="0.5s"
             />
             <Image src={Wheel}
                 pos="absolute"
                 w="1000px"
                 bottom="-400px"
-                right="calc(-600px + 10%)"
+                right={user ? "-1000px" : "calc(-600px + 10%)"}
                 animation="logo-spin infinite 180s linear"
+                transition="0.5s"
             />
         </Box>
      );

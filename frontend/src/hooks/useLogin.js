@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useRoutineContext } from "./useRoutineContext";
 
 export const useLogin = () => {
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const { dispatch } = useAuthContext()
+    const { user, dispatch } = useAuthContext();
+    const { dispatch: routineDispatch } = useRoutineContext();
 
     const login = async (email, password) => {
         setIsLoading(true);
@@ -25,17 +27,44 @@ export const useLogin = () => {
             setError(json.error)
         }
 
-        console.log(error)
         if (response.ok) {
             // save the user to local storage
             localStorage.setItem('user', JSON.stringify(json))
 
             // update Auth Context
             dispatch({type: 'LOGIN', payload: json})
-
-            setIsLoading(false)
-        }
+        } 
+        
     }
+
+    useEffect(() => {
+            
+        const fetchRoutines = async () => {
+            
+            const routineResponse = await fetch('http://localhost:4000/api/routines', {
+                method: 'GET',
+                headers: {'Authorization': `bearer ${user.token}`}   
+            })
+
+            const routineJson = await routineResponse.json();
+
+            if (!routineResponse.ok) {
+                setIsLoading(false);
+                setError(json.error)
+            }
+
+            if (routineResponse.ok) {
+                routineDispatch({type: 'GET_ROUTINES', payload: routineJson});
+
+                setIsLoading(false);
+            }
+        }
+
+        if (user) {
+            fetchRoutines();
+        }
+
+    }, [user])
 
     return { login, isLoading, error }
 }

@@ -6,7 +6,8 @@ const createRoutine = async (req, res) => {
 
     // add doc to db
     try {
-        const routine = await Routine.create({name, wakeAndSleepTimes, ritualInstances, dayMapping, activeRituals})
+        const user_id = req.user._id;
+        const routine = await Routine.create({name, user_id, wakeAndSleepTimes, ritualInstances, dayMapping, activeRituals})
         res.status(200).json(routine)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -15,8 +16,9 @@ const createRoutine = async (req, res) => {
 
 // GET all routines - WILL CHANGE LATER WHEN CREATING AUTH
 const getRoutines = async (req, res) => {
+    const user_id = req.user._id;
     const routines = await Routine.find({
-        // uid: User ID
+        user_id
     }).sort({createdAt: -1})
     res.status(200).json(routines);
 } 

@@ -10,12 +10,18 @@ import UserDashboard from "../../pages/user-dashboard/UserDashboard";
 
 // Context
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useState } from "react";
 
 const RootLayout = () => {
-
+    
+    const [showRoutines, setShowRoutines] = useState(false);
     const { user } = useAuthContext()
 
     const bgColor = "#865032"
+
+    user && setTimeout(() => {
+        setShowRoutines(true)
+    }, 1500)
     
     return ( 
         <Box as="main"
@@ -28,13 +34,9 @@ const RootLayout = () => {
             
         >
             <LoginDrawer />
-
-            {user ? 
-            
-                <UserDashboard /> : 
-                
                 <LandingPage />
-            }
+                {showRoutines && user && <UserDashboard />}
+            
         </Box>
      );
 }

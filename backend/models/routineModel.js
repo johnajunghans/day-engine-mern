@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const routineSchema = new Schema({
     name: {type: String, required: true},
+    user_id: {type: String, required: true},
     wakeAndSleepTimes: {
         Sunday: {
             wake: String,
