@@ -19,15 +19,6 @@ const LandingPage = () => {
             minH="100vh"
             overflow="hidden"
         >
-            <Image src={Logo}
-                width={user ? "100px" : "300px"}
-                pos="absolute"
-                top={user ? "5px" : "calc(50% - 150px)"}
-                left={user ? "5px" : "calc(50% - 150px)"}
-                animation="logo-spin infinite 90s linear"
-                transition="0.5s"
-                transitionDelay="1s"
-            />
             <Image src={Wheel}
                 pos="absolute"
                 w="1000px"

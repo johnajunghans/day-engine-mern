@@ -6,6 +6,8 @@ export const routineReducer = (state, action) => {
     switch (action.type) {
         case 'GET_ROUTINES':
             return {routines: action.payload}
+        case 'LOGOUT': 
+            return {routines: null}
         default: 
             return state;
     }

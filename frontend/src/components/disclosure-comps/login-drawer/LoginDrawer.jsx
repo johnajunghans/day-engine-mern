@@ -38,24 +38,27 @@ const LoginDrawer = () => {
 
     return (
         <>
-            {!isOpen && <Button onClick={onOpen}
-                pos="absolute"
+            <Button onClick={onOpen}
+                pos={user ? "unset" : "absolute"}
                 m="1rem"
-                right="0px"
+                right={user ? "unset" : "0px"}
+                // bottom={user ? "0px" : "unset"}
+                // left={user ? "0px" : "unset"}
                 colorScheme="blackAlpha"
-                // bgColor="#F1B049"
+                transition="0.5s"
+                // variant="outline"
+                // bgColor="#672012"
                 // _hover={{bgColor: "#C28E3A"}}
                 zIndex="1"
                 
             >
                 {user ? "Account" : "Login"}
-            </Button>}
+            </Button>
             
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                size="md"
-                
+                size="md" 
             >
                 <DrawerOverlay />
                 <DrawerContent 
