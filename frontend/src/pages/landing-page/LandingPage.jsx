@@ -1,6 +1,6 @@
 import { Box, Button, Image } from "@chakra-ui/react";
 import Logo from '../../assets/logo.png';
-import Wheel from '../../assets/wheel.png';
+import Wheel from '../../assets/Wheel-Landing Page.svg';
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 const LandingPage = () => {

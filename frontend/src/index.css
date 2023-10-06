@@ -12,6 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* COLOR VARIABLES */
+  --primary-light: #EBDBD1;
+  --primary-dark: #3D291C;
+  --secondary-light: #986546;
+  --secondary-dark: #1F140E;
+  --accent: #F1B049;
 }
 
 body {

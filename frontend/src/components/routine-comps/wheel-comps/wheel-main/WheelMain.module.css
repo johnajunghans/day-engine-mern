@@ -1,0 +1,76 @@
+.container {
+    position: relative;
+    width: 800px;
+    height: 800px;
+}
+
+.svg {
+    overflow: visible;
+}
+
+.overflow {
+    overflow: visible; 
+}
+
+.innerCircle {
+    position: relative;
+    /* filter: drop-shadow(0px 4px 2px rgb(0 0 0 / 0.2)); */
+    stroke: rgba(0,0,0,0.5);
+    stroke-width: 1;
+}
+
+.innerCircle:hover ~ .smallSettingsBtn, .smallSettingsBtn:hover, .innerCircle:hover ~ .svg > .smallSettingsBtn {
+    transform: translate(50px, -50px);
+}
+
+.outerCircle {
+    filter: none;
+    stroke: rgba(0,0,0,0.5);
+    stroke-width: 1;
+    fill: #f8f8ff;
+}
+
+.lines {
+    stroke: rgba(0,0,0,0.5);
+    stroke-width: 1;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.markerWrapper {
+    transform-origin: center;
+}
+
+.marker {
+    font-family: 'Philosopher';
+    font-size: 12px;
+    transform-origin: -26px 400px;
+}
+
+.circleBtn {
+    fill: #f8f8ff;
+    filter: drop-shadow(0px 4px 2px rgb(0 0 0 / 0.2));
+    transition: 0.3s;
+}
+
+.circleBtn:hover {
+    filter: drop-shadow(0px 4px 4px rgb(0 0 0 / 0.4));
+    transition: 0.1s;
+}
+
+.addHabitBtnPlusSign {
+    stroke: black;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+    transform-origin: 400px 400px;
+    transition: 0.3s;
+}
+
+.smallSettingsBtn {
+    transition: 0.2s;
+}
+
+
+

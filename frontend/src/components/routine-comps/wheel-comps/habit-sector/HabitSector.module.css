@@ -1,0 +1,18 @@
+.habitSector {
+    fill: rgba(152, 193, 255, 0.5);
+    transition: 0.1s;
+    cursor: pointer;
+    /* filter: drop-shadow(0px 4px 2px rgb(0 0 0 / 0.2)); */
+}
+
+.habitSector:hover {
+    fill:rgba(152, 193, 255, 0.75);
+    transition: 0.1s;
+    /* stroke: rgba(0, 0, 0, 1);
+    stroke-width: 0.5; */
+}
+
+.habitText {
+    font-family: 'Philosopher';
+    pointer-events: none;
+}

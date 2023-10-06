@@ -38,17 +38,13 @@ const LoginDrawer = () => {
 
     return (
         <>
-            <Button onClick={onOpen}
+            <Button id="login-account-btn" onClick={onOpen}
                 pos={user ? "unset" : "absolute"}
-                m="1rem"
+                // m="1rem"
                 right={user ? "unset" : "0px"}
-                // bottom={user ? "0px" : "unset"}
-                // left={user ? "0px" : "unset"}
-                colorScheme="blackAlpha"
-                transition="0.5s"
-                // variant="outline"
-                // bgColor="#672012"
-                // _hover={{bgColor: "#C28E3A"}}
+                transition="0.2s"
+                bgColor="#F1B049"
+                _hover={{bgColor: "#F9D7A2"}}
                 zIndex="1"
                 
             >
