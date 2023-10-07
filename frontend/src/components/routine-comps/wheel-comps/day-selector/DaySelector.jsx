@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
 
 const DaySelector = () => {
@@ -6,6 +6,8 @@ const DaySelector = () => {
     const days = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
 
     const [activeDay, setActiveDay] = useState(0);
+
+    const dayTextColor = useColorModeValue("#000000", "#f8f8ff");
 
     const Day = ({ name, index }) => {
         return (
@@ -18,28 +20,33 @@ const DaySelector = () => {
                 bgColor="transparent"
                 fontFamily="Philosopher"
                 fontWeight="normal"
-                zIndex={2}
-                color={activeDay === index ? "black" : "#f8f8ff"}
+                // zIndex={2}
+                // color={activeDay === index ? "black" : dayTextColor}
+                color={dayTextColor}
                 // boxShadow={index===activeDay ? "0px 4px 4px rgba(0,0,0,0.25)" : "none"}
                 onClick={() => {setActiveDay(index)}}
-                _hover={{border: "1px solid #f8f8ff"}}
+                _hover={{border: `1px solid ${dayTextColor}` }}
             >{name}</Button>
         )
     }
 
     return ( 
         <Flex flexDir="row" position="relative" gap="0px">
-            <Box
+            <Flex
                 w={10}
                 h={10}
-                bgColor="#F8F8FF"
+                alignItems="center"
+                justifyContent="center"
+                // fontWeight="bold"
+                bgColor="#f8f8ff"
+                color="#000000"
                 boxShadow="0px 4px 4px 1px rgba(0,0,0,0.25)"
                 borderRadius="5px"
                 zIndex={1}
                 position="absolute"
                 left={`${activeDay*40}px`}
                 transition="0.2s"
-            />
+            >{days[activeDay]}</Flex>
             {days.map( (day, index) => (
                 <Day key={day} name={day} index={index} />
         ))}</Flex>

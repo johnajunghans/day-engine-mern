@@ -1,9 +1,12 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import WheelMain from "./wheel-comps/wheel-main/WheelMain";
 import Rituals from "./ritual-comps/Rituals";
 import DaySelector from "./wheel-comps/day-selector/DaySelector";
 
 const RoutineBody = () => {
+
+    const bg = useColorModeValue("var(--primary-light)", "var(--primary-dark)");
+
     return ( 
         <Flex as="section" id="routine-background"
             align="center"
@@ -16,7 +19,7 @@ const RoutineBody = () => {
                 flexGrow="1"
                 width="100%"
                 h="100%"
-                bgColor="var(--primary-dark)"
+                bgColor={bg}
                 borderRadius="10px"
             >
                 <Flex id="ritual-container"
@@ -40,7 +43,7 @@ const RoutineBody = () => {
                     <Box id="day-selector-container" pos="absolute" top="10px" left="10px">
                         <DaySelector />
                     </Box>
-                    
+
                     <WheelMain />
                 </Flex>
             </Box>

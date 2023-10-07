@@ -1,5 +1,5 @@
 import { ChevronRightIcon, DownloadIcon } from "@chakra-ui/icons";
-import { Flex, IconButton, Text } from "@chakra-ui/react";
+import { Flex, IconButton, Text, useColorModeValue } from "@chakra-ui/react";
 import { useState } from "react";
 import CircularAddBtn from "../../utility-comps/button-comps/CircularAddBtn";
 import RitualTileOriginal from "../wheel-comps/ritual-tile/RitualTile";
@@ -25,7 +25,8 @@ const Rituals = () => {
 
     const iconBtnStyles = {
         bgColor: "unset",
-        _hover: {bgColor: "rgba(0,0,0,0.25)"},
+        _hover: {bgColor: "unset"},
+        color: "#000000"
     }
 
     const RitualTile = ({ name, emoji, description }) => {
@@ -36,21 +37,24 @@ const Rituals = () => {
 
             return (
                 <Flex>
-                    <Text fontWeight="bold">{label}:   </Text>
-                    <Text>{description}</Text>
+                    <Text color="#000000" fontWeight="bold">{label}:   </Text>
+                    <Text color="#000000">{description}</Text>
                 </Flex>
             )
         }
 
         return (
-            <Flex className="ritual-tile"
+            <Flex as="button" className="ritual-tile"
                 flexDir="column"
                 justify="center" 
                 w="100%"
                 h={expanded ? "auto" : "50px"}
                 bgColor="#f8f8ff"
-                boxShadow="0px 4px 4px rgba(0,0,0,0.25)"
+                _hover={{bgColor: "rgba(255,255,255,0.85)"}}
+                // boxShadow="0px 2px 2px rgba(0,0,0,0.25)"
+                // _hover={{boxShadow: "0px 4px 4px rgba(0,0,0,0.25)"}}
                 borderRadius="10px"
+                onClick={() => {setExpanded(!expanded)}}
             >
                 <Flex className="ritual-tile-header"
                     px="1rem"
@@ -60,11 +64,11 @@ const Rituals = () => {
                     justify="space-between"
                 >               
                     <Text className="ritual-emoji"><span>{String.fromCodePoint(emoji)}</span></Text>
-                    <Text fontSize="14px" fontWeight="bold">{name}</Text>
+                    <Text fontSize="14px" color="#000000" fontWeight="bold">{name}</Text>
                     <IconButton 
                         icon={<ChevronRightIcon boxSize="22px" transform={expanded ? "rotate(90deg)" : "rotate(0deg)"} transition="0.2s" />} 
                         {...iconBtnStyles}
-                        onClick={() => {setExpanded(!expanded)}}
+                        // onClick={() => {setExpanded(!expanded)}}
                     />
                 </Flex>
                 {expanded && 
@@ -83,6 +87,8 @@ const Rituals = () => {
 
     const RitualType = ({ type }) => {
 
+        const headerTextColor = useColorModeValue("#000000", "#f8f8ff")
+
         return (
             <Flex
                 pos="relative"
@@ -93,7 +99,7 @@ const Rituals = () => {
                     pos="absolute"
                     top="-25px" left="-10px"
                     fontSize="14px" 
-                    color="#f8f8ff"
+                    color={headerTextColor}
                 >{type.toUpperCase()}</Text>
 
                 {mockRituals[type].map( ritual => (

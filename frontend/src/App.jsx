@@ -2,6 +2,7 @@ import './App.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/root-layout/RootLayout';
+import theme from './themeConfig';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   );
   
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   )

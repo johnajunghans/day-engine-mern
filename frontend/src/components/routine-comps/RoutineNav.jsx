@@ -1,9 +1,12 @@
-import { Flex, IconButton, Text } from "@chakra-ui/react"; 
+import { Flex, IconButton, Text, useColorModeValue } from "@chakra-ui/react"; 
 import { AddIcon } from "@chakra-ui/icons";
 import CircularAddBtn from "../utility-comps/button-comps/CircularAddBtn";
 
 
 const Routines = ({ routines }) => {
+
+    const bg = useColorModeValue("var(--primary-light)", "var(--primary-dark)");
+    const headerTextColor = useColorModeValue("#000000", "#f8f8ff")
 
     return ( 
 
@@ -12,13 +15,13 @@ const Routines = ({ routines }) => {
             alignItems="center"
             // gap="0.75rem"
             // border="2px solid black"
-            bgColor="var(--primary-dark)"
+            bgColor={bg}
             borderRadius="10px"
             p="0.35rem 0 0.75rem"
         >
             <Text
                 w="100%"
-                color="#f8f8ff"
+                color={headerTextColor}
                 fontWeight="bold"
                 fontSize="18px"
                 textAlign="center"

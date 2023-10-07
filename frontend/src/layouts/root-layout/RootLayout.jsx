@@ -1,5 +1,5 @@
 // Chakra
-import { Box, Flex, IconButton, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 
 // Components
@@ -26,7 +26,7 @@ const RootLayout = () => {
     const { user } = useAuthContext();
     const { routines } = useRoutineContext();
 
-    console.log(routines)
+    const bg = useColorModeValue("var(--secondary-light)", "var(secondary-dark)")
     
     return ( 
         <Box as="main" id="primary-container"
@@ -35,7 +35,7 @@ const RootLayout = () => {
             pos="relative"
             display={user ? "grid" : "block"}
             gridTemplateColumns="1fr 15fr"
-            bgColor="var(--secondary-dark)"
+            bgColor={bg}
         >
             <Flex as="section" id="sidebar-container"
                 flexDir="column"
