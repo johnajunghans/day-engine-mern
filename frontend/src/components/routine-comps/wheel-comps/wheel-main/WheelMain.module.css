@@ -15,7 +15,8 @@
 .innerCircle {
     position: relative;
     /* filter: drop-shadow(0px 4px 2px rgb(0 0 0 / 0.2)); */
-    stroke: rgba(0,0,0,0.5);
+    /* stroke: rgba(0,0,0,0.5); */
+    /* stroke: #f8f8ff; */
     stroke-width: 1;
 }
 
@@ -25,13 +26,15 @@
 
 .outerCircle {
     filter: none;
-    stroke: rgba(0,0,0,0.5);
+    /* stroke: rgba(0,0,0,0.5); */
+    /* stroke: #f8f8ff; */
     stroke-width: 1;
-    fill: #f8f8ff;
+    /* fill: #C6C6CC; */
 }
 
 .lines {
-    stroke: rgba(0,0,0,0.5);
+    /* stroke: rgba(0,0,0,0.5); */
+    /* stroke: #f8f8ff; */
     stroke-width: 1;
     transform-origin: center;
     pointer-events: none;

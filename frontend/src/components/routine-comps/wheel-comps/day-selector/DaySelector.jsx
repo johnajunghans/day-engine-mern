@@ -8,6 +8,7 @@ const DaySelector = () => {
     const [activeDay, setActiveDay] = useState(0);
 
     const dayTextColor = useColorModeValue("#000000", "#f8f8ff");
+    const selectorBg = useColorModeValue("var(--white-light)", "var(--white-dark)");
 
     const Day = ({ name, index }) => {
         return (
@@ -38,9 +39,9 @@ const DaySelector = () => {
                 alignItems="center"
                 justifyContent="center"
                 // fontWeight="bold"
-                bgColor="#f8f8ff"
+                bgColor={selectorBg}
                 color="#000000"
-                boxShadow="0px 4px 4px 1px rgba(0,0,0,0.25)"
+                // boxShadow="0px 4px 4px 1px rgba(0,0,0,0.25)"
                 borderRadius="5px"
                 zIndex={1}
                 position="absolute"

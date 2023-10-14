@@ -18,7 +18,12 @@
   --primary-dark: #3D291C;
   --secondary-light: #986546;
   --secondary-dark: #1F140E;
-  --accent: #F1B049;
+  --accent-light: #F1B049;
+  --accent-dark: #672112;
+  --accent-light-hover: #F6C87D;
+  --accent-dark-hover: #944E3E;
+  --white-light: #F8F8FF;
+  --white-dark: #E1D9D1;
 }
 
 body {

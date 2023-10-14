@@ -47,7 +47,6 @@ const RoutineBody = () => {
                     <WheelMain />
                 </Flex>
             </Box>
-        
         </Flex>
      );
 }

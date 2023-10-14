@@ -1,4 +1,4 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, useDisclosure, Text, useToast } from "@chakra-ui/react";
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, useDisclosure, Text, useToast, useColorModeValue } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useLogin } from "../../../hooks/useLogin";
@@ -10,6 +10,9 @@ const LoginDrawer = () => {
     const { login, isLoading, error } = useLogin();
     const logout = useLogout();
     const { user } = useAuthContext();
+    const btnColor = useColorModeValue("var(--accent-light)", "var(--accent-dark)")
+    const btnColorHover = useColorModeValue("var(--accent-light-hover)", "var(--accent-dark-hover)")
+
 
     const errorToast = useToast();
 
@@ -39,12 +42,15 @@ const LoginDrawer = () => {
     return (
         <>
             <Button id="login-account-btn" onClick={onOpen}
+                // w={user ? "100px" : "auto"} 
+                // h="36px"
                 pos={user ? "unset" : "absolute"}
-                // m="1rem"
+                mr={user ? "unset" : "1rem"}
                 right={user ? "unset" : "0px"}
                 transition="0.2s"
-                bgColor="#F1B049"
-                _hover={{bgColor: "#F9D7A2"}}
+                bgColor={btnColor}
+                borderRadius="10px"
+                _hover={{bgColor: btnColorHover}}
                 zIndex="1"
                 
             >
@@ -54,13 +60,15 @@ const LoginDrawer = () => {
             <Drawer
                 isOpen={isOpen}
                 onClose={onClose}
-                size="md" 
+                size="md"
+                placement={user ? "left" : "right"}
             >
                 <DrawerOverlay />
                 <DrawerContent 
                     bgColor="rgba(0,0,0,0.5)"
-                    borderLeft="3px solid #F1B049"
-                    borderRadius="10px 0px 0px 10px"
+                    borderLeft={user ? "unset" : "3px solid #F1B049"}
+                    borderRight={user ? "3px solid #F1B049" : "unset"}
+                    borderRadius={user ? "0px 10px 10px 0px" : "10px 0px 0px 10px"}
                     backdropFilter="blur(2px)"
                 >
                     <DrawerCloseButton color="#FFFFFF" _hover={{bgColor: "rgba(255,255,255,0.25)"}} />

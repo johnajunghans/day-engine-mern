@@ -1,10 +1,13 @@
-import { ChevronRightIcon, DownloadIcon } from "@chakra-ui/icons";
-import { Flex, IconButton, Text, useColorModeValue } from "@chakra-ui/react";
+import { ChevronRightIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import { Flex, IconButton, Text, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
+import AddModal from "../../disclosure-comps/AddModal";
+import AddRitualForm from "../../form-comps/AddRitualForm";
 import CircularAddBtn from "../../utility-comps/button-comps/CircularAddBtn";
-import RitualTileOriginal from "../wheel-comps/ritual-tile/RitualTile";
 
 const Rituals = () => {
+
+    const headerTextColor = useColorModeValue("#000000", "#f8f8ff");
 
     const mockRituals = {
         essential: [
@@ -29,9 +32,12 @@ const Rituals = () => {
         color: "#000000"
     }
 
+    const { isOpen: isAddRitualModalOpen, onOpen: handleAddRitualModelOpen, onClose: handleAddRitualModelClose } = useDisclosure();
+
     const RitualTile = ({ name, emoji, description }) => {
 
         const [expanded, setExpanded] = useState(false);
+        const bg = useColorModeValue("var(--white-light)", "var(--white-dark)");
 
         const DescriptionText = ({ label, description }) => {
 
@@ -49,7 +55,7 @@ const Rituals = () => {
                 justify="center" 
                 w="100%"
                 h={expanded ? "auto" : "50px"}
-                bgColor="#f8f8ff"
+                bgColor={bg}
                 _hover={{bgColor: "rgba(255,255,255,0.85)"}}
                 // boxShadow="0px 2px 2px rgba(0,0,0,0.25)"
                 // _hover={{boxShadow: "0px 4px 4px rgba(0,0,0,0.25)"}}
@@ -63,10 +69,10 @@ const Rituals = () => {
                     align="center"
                     justify="space-between"
                 >               
-                    <Text className="ritual-emoji"><span>{String.fromCodePoint(emoji)}</span></Text>
+                    <Text className="ritual-emoji" fontSize="25px">{String.fromCodePoint(emoji)}</Text>
                     <Text fontSize="14px" color="#000000" fontWeight="bold">{name}</Text>
                     <IconButton 
-                        icon={<ChevronRightIcon boxSize="22px" transform={expanded ? "rotate(90deg)" : "rotate(0deg)"} transition="0.2s" />} 
+                        icon={<ChevronRightIcon boxSize="22px" transform={expanded ? "rotate(90deg)" : "rotate(0deg)"} transition="0.1s" />} 
                         {...iconBtnStyles}
                         // onClick={() => {setExpanded(!expanded)}}
                     />
@@ -87,8 +93,6 @@ const Rituals = () => {
 
     const RitualType = ({ type }) => {
 
-        const headerTextColor = useColorModeValue("#000000", "#f8f8ff")
-
         return (
             <Flex
                 pos="relative"
@@ -104,7 +108,6 @@ const Rituals = () => {
 
                 {mockRituals[type].map( ritual => (
                     <RitualTile key={ritual.name} name={ritual.name} emoji={ritual.emoji} description={ritual.description} />
-                    
                 ))}
 
             </Flex>
@@ -118,18 +121,20 @@ const Rituals = () => {
                 align="center"
                 justify="space-between"
             >   
-                <CircularAddBtn btnSize="30px" iconSize="12px" />
+                <CircularAddBtn btnSize="30px" iconSize="12px" handleClick={handleAddRitualModelOpen} tooltip="Create New Ritual" />
                 <Text id="ritual-header-text" 
                     fontSize="18px" 
                     fontWeight="bold"
-                    color="#f8f8ff"
+                    color={headerTextColor}
                 >Rituals</Text>
-                <IconButton icon={<DownloadIcon />}
+                <IconButton icon={<ExternalLinkIcon />}
                     w="30px" h="30px" minW="unset"
                     borderRadius="5px" 
                     bgColor="var(--accent)"
-                    boxShadow="0px 4px 4px rgba(0,0,0,0.25)"
-                    _hover={{bgColor: "#F9D7A2"}}
+                    boxShadow="0px 2px 2px rgba(0,0,0,0.25)"
+                    // _hover={{bgColor: "#F9D7A2"}}
+                    _hover={{boxShadow: "0px 4px 4px rgba(0,0,0,0.25)"}}
+                    visibility="hidden"
                 />
             </Flex>
             <Flex id="ritual-type-container"
@@ -141,8 +146,16 @@ const Rituals = () => {
                 <RitualType type="movement" />
                 <RitualType type="becoming" />
             </Flex>
+            <AddModal 
+                isOpen={isAddRitualModalOpen} 
+                onClose={handleAddRitualModelClose} 
+                header="Add New Ritual" 
+                size="lg"
+                submitButtonText="Create New Ritual"
+            >
+                <AddRitualForm />
+            </AddModal>
         </>
-
      );
 }
  
