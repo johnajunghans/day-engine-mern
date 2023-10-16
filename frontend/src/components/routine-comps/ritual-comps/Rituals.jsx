@@ -8,22 +8,57 @@ import CircularAddBtn from "../../utility-comps/button-comps/CircularAddBtn";
 const Rituals = () => {
 
     const headerTextColor = useColorModeValue("#000000", "#f8f8ff");
+    const { isOpen: isAddRitualModalOpen, onOpen: handleAddRitualModelOpen, onClose: handleAddRitualModelClose } = useDisclosure();
 
-    const mockRituals = {
-        essential: [
-            {
-                name: "Meditation",
-                emoji: 129496,
-                description: {
-                    what: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
-                    where: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
-                    why: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates."
-                },
-                type: "essential"
-            }
-        ],
+    const rawRituals = [
+        {
+            name: "Meditation",
+            emoji: 129496,
+            description: {
+                what: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                where: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                why: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates."
+            },
+            type: "essential"
+        },
+        {
+            name: "Meditation",
+            emoji: 129496,
+            description: {
+                what: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                where: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                why: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates."
+            },
+            type: "essential"
+        },
+        {
+            name: "Meditation",
+            emoji: 129496,
+            description: {
+                what: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                where: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates.",
+                why: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae, inventore! Voluptates nesciunt a adipisci rerum officia quos non. Reiciendis eos nobis earum quos magni vel inventore nemo ut soluta voluptates."
+            },
+            type: "becoming"
+        }
+    ]
+
+    const mappableRituals = {
+        essential: [],
         movement: [],
         becoming: []
+    }
+
+    rawRituals.forEach( ritual => {
+        mappableRituals[ritual.type].push(ritual);
+    })
+
+    const [rituals, setRituals] = useState(mappableRituals);
+
+    const handleAddRitual = (newRitual) => {
+        const newRituals = {...rituals}
+        newRituals[newRitual.type].push(newRitual);
+        setRituals(newRituals);
     }
 
     const iconBtnStyles = {
@@ -31,8 +66,6 @@ const Rituals = () => {
         _hover: {bgColor: "unset"},
         color: "#000000"
     }
-
-    const { isOpen: isAddRitualModalOpen, onOpen: handleAddRitualModelOpen, onClose: handleAddRitualModelClose } = useDisclosure();
 
     const RitualTile = ({ name, emoji, description }) => {
 
@@ -50,7 +83,7 @@ const Rituals = () => {
         }
 
         return (
-            <Flex as="button" className="ritual-tile"
+            <Flex className="ritual-tile"
                 flexDir="column"
                 justify="center" 
                 w="100%"
@@ -61,6 +94,7 @@ const Rituals = () => {
                 // _hover={{boxShadow: "0px 4px 4px rgba(0,0,0,0.25)"}}
                 borderRadius="10px"
                 onClick={() => {setExpanded(!expanded)}}
+                cursor="pointer"
             >
                 <Flex className="ritual-tile-header"
                     px="1rem"
@@ -95,9 +129,11 @@ const Rituals = () => {
 
         return (
             <Flex
+                flexDir="column"
                 pos="relative"
                 w="80%"
                 minH="50px"
+                gap="0.5rem"
             >
                 <Text
                     pos="absolute"
@@ -106,7 +142,7 @@ const Rituals = () => {
                     color={headerTextColor}
                 >{type.toUpperCase()}</Text>
 
-                {mockRituals[type].map( ritual => (
+                {rituals[type].map( ritual => (
                     <RitualTile key={ritual.name} name={ritual.name} emoji={ritual.emoji} description={ritual.description} />
                 ))}
 
@@ -153,7 +189,7 @@ const Rituals = () => {
                 size="lg"
                 submitButtonText="Create New Ritual"
             >
-                <AddRitualForm />
+                <AddRitualForm handleAddRitual={handleAddRitual} />
             </AddModal>
         </>
      );

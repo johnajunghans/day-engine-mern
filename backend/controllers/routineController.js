@@ -19,7 +19,7 @@ const getRoutines = async (req, res) => {
     const user_id = req.user._id;
     const routines = await Routine.find({
         user_id
-    }).sort({createdAt: -1})
+    }).sort({updatedAt: -1})
     res.status(200).json(routines);
 } 
 

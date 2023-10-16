@@ -25,8 +25,9 @@ const RoutineBody = () => {
                 <Flex id="ritual-container"
                     maxW="600px"
                     minW="350px"
+                    maxH="calc(100vh - 2rem)"
                     flexDir="column"
-                    // flexGrow="2"
+                    overflow="auto"
                     mr="0.5rem"
                     gap="2rem"
                 >
@@ -43,7 +44,6 @@ const RoutineBody = () => {
                     <Box id="day-selector-container" pos="absolute" top="10px" left="10px">
                         <DaySelector />
                     </Box>
-
                     <WheelMain />
                 </Flex>
             </Box>

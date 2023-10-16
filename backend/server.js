@@ -7,6 +7,7 @@ const cors = require('cors');
 //required routes
 const routineRoutes = require('./routes/routines.js');
 const userRoutes = require('./routes/users.js');
+const ritualRoutes = require('./routes/rituals');
 
 // express app
 const app = express();
@@ -23,7 +24,8 @@ app.use(cors())
 
 // routes
 app.use('/api/routines', routineRoutes);
-app.use('/api/users', userRoutes); 
+app.use('/api/users', userRoutes);
+app.use('/api/rituals', ritualRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

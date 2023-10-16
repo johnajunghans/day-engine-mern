@@ -113,27 +113,4 @@ const routineSchema = new Schema({
     activeRituals: [String]
 }, {timestamps: true})
 
-// const ritualInstance = new Schema({
-//     ritualId: {type: String, required: true},
-//     name: {type: String, required: true},
-//     startTime: {type: String, required: true},
-//     endTime: {type: String, required: true},
-//     activeDays: {
-//         Sunday: Boolean,
-//         Monday: Boolean,
-//         Tuesday: Boolean,
-//         Wednesday: Boolean,
-//         Thursday: Boolean,
-//         Friday: Boolean,
-//         Saturday: Boolean
-//     }
-// })
-
-// const dayMap = new Schema({
-//     ritualInstanceId: {type: String, required: true},
-//     name: {type: String, required: true},
-//     startTime: {type: String, required: true},
-//     endTime: {type: String, required: true}
-// })
-
 module.exports = mongoose.model('Routine', routineSchema);

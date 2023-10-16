@@ -1,14 +1,15 @@
 import { BellIcon, InfoIcon } from "@chakra-ui/icons";
-import { Flex, IconButton, Input, InputGroup, Stack, Textarea, useColorModeValue, ModalBody, ModalFooter } from "@chakra-ui/react";
+import { Flex, IconButton, Input, InputGroup, Stack, Textarea, useColorModeValue, ModalBody, ModalFooter, Select } from "@chakra-ui/react";
 import { useState } from "react";
 import { Form } from "react-router-dom";
 import { inputStyles } from "./formStyles";
 import FormSubmitBtn from "./FormSubmitBtn";
 
-const AddRitualForm = () => {
+const AddRitualForm = ({ handleAddRitual }) => {
 
+    const [name, setName] = useState("")
     const [emoji, setEmoji] = useState(null);
-    const [type, setType] = useState(null);
+    const [type, setType] = useState("");
 
     const [descriptionWhat, setDescriptionWhat] = useState("");
     const [descriptionWhere, setDescriptionWhere] = useState("");
@@ -46,6 +47,16 @@ const AddRitualForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        const newRitual = {
+            name: name,
+            type: type,
+            description: {
+                what: descriptionWhat,
+                where: descriptionWhere,
+                why: descriptionWhy
+            }
+        }
+        handleAddRitual(newRitual);
     }
 
     return (
@@ -76,6 +87,11 @@ const AddRitualForm = () => {
                         />
                     </InputGroup>
                     <Flex flexDir="column" align="center">
+                        <Select placeholder="Ritual Type" value={type} onChange={e => {setType(e.target.value)}} mb="1.5rem">
+                            <option>Essential</option>
+                            <option>Movement</option>
+                            <option>Becoming</option>
+                        </Select>
                         <Flex {...descriptionHeaderStyles}>What</Flex>
                         <Textarea id="description-what-input"
                             {...descriptionTextareaStyles}
